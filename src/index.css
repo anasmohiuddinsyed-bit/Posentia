@@ -1,0 +1,218 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Futuristic Design System - Linear/Vercel/Arc/Apple inspired */
+
+@layer base {
+  :root {
+    /* White background - keep it clean */
+    --background: 0 0% 100%;
+    --foreground: 222 47% 11%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    /* Midnight blue primary - replace light blue */
+    --primary: 217 91% 35%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 217 91% 45%;
+
+    /* Sophisticated teal secondary */
+    --secondary: 188 85% 53%;
+    --secondary-foreground: 0 0% 100%;
+    --secondary-glow: 188 85% 63%;
+
+    /* Elegant purple accent */
+    --accent: 262 83% 58%;
+    --accent-foreground: 0 0% 100%;
+    --accent-glow: 262 83% 68%;
+
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 217 91% 35%;
+
+    --radius: 0.75rem;
+
+    /* Premium gradients - midnight blue accents */
+    --gradient-primary: linear-gradient(135deg, hsl(217 91% 35%) 0%, hsl(188 85% 53%) 50%, hsl(262 83% 58%) 100%);
+    --gradient-hero: radial-gradient(ellipse at top, hsl(217 91% 35% / 0.08) 0%, transparent 50%),
+                      radial-gradient(ellipse at bottom right, hsl(262 83% 58% / 0.06) 0%, transparent 50%);
+    --gradient-glow: radial-gradient(circle at 50% 50%, hsl(217 91% 35% / 0.1) 0%, transparent 70%);
+    
+    /* Premium shadows - light theme */
+    --shadow-premium: 0 20px 60px -15px hsl(222 47% 11% / 0.08), 
+                      0 0 0 1px hsl(214 32% 91% / 1);
+    --shadow-card: 0 1px 3px hsl(222 47% 11% / 0.05), 
+                   0 8px 24px hsl(222 47% 11% / 0.08),
+                   0 0 0 1px hsl(214 32% 91% / 1);
+    --shadow-glow-primary: 0 0 40px -10px hsl(217 91% 35% / 0.2), 
+                           0 0 0 1px hsl(214 32% 91% / 1);
+    --shadow-glow-accent: 0 0 30px -10px hsl(262 83% 58% / 0.15);
+    
+    /* Refined glassmorphism - light mode */
+    --glass-bg: hsl(0 0% 100% / 0.8);
+    --glass-border: hsl(214 32% 91% / 0.8);
+    
+    /* Transitions */
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    --transition-spring: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, sans-serif;
+    font-feature-settings: "cv11", "ss01";
+    letter-spacing: -0.01em;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    * {
+      scroll-behavior: smooth;
+    }
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold tracking-tight;
+    letter-spacing: -0.02em;
+  }
+}
+
+@layer utilities {
+  /* Glass panels */
+  .glass-panel {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+  }
+  
+  /* Glow effects */
+  .glow-primary {
+    box-shadow: var(--shadow-glow-primary);
+  }
+  
+  .glow-accent {
+    box-shadow: var(--shadow-glow-accent);
+  }
+  
+  .glow-border {
+    border: 1px solid hsl(217 91% 60% / 0.3);
+    box-shadow: 0 0 20px hsl(217 91% 60% / 0.1), inset 0 0 20px hsl(217 91% 60% / 0.05);
+  }
+  
+  /* Shadows */
+  .shadow-premium {
+    box-shadow: var(--shadow-premium);
+  }
+  
+  .shadow-card {
+    box-shadow: var(--shadow-card);
+  }
+  
+  /* Transitions */
+  .transition-smooth {
+    transition: var(--transition-smooth);
+  }
+  
+  .transition-bounce {
+    transition: var(--transition-bounce);
+  }
+
+  .transition-spring {
+    transition: var(--transition-spring);
+  }
+  
+  /* Gradient text */
+  .gradient-text {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% 200%;
+    animation: gradient-shift 8s ease infinite;
+  }
+
+  @keyframes gradient-shift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  /* Floating badge */
+  .floating-badge {
+    @apply glass-panel rounded-full px-4 py-1.5 text-xs font-medium;
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+
+  /* Animated background */
+  .animated-bg {
+    background: var(--gradient-hero);
+    animation: bg-pulse 20s ease infinite;
+  }
+
+  @keyframes bg-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.8; }
+  }
+
+  /* Grid pattern - light theme */
+  .grid-pattern {
+    background-image: 
+      linear-gradient(hsl(214 32% 91% / 0.5) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(214 32% 91% / 0.5) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+
+  /* Parallax container */
+  .parallax-container {
+    transform-style: preserve-3d;
+    transition: transform 0.1s ease-out;
+  }
+
+  /* Fade in animation */
+  .animate-fade-in {
+    animation: fadeIn 1s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Model viewer styling */
+  model-viewer {
+    @apply w-full h-full;
+  }
+}
